@@ -1,0 +1,31 @@
+<div class="select">
+  <div class="select_wrap">
+    <label class="label_categories" for="categories">Categories</label>
+    <mat-form-field class="select_field" appearance="fill">
+      <mat-select
+        matNativeControl
+        class="select_categories"
+        name="categories"
+        id="categories"
+      >
+        <mat-option value="all">all</mat-option>
+        <mat-option value="art">art</mat-option>
+        <mat-option value="biography">biography</mat-option>
+        <mat-option value="computers">computers</mat-option>
+        <mat-option value="history">history</mat-option>
+        <mat-option value="medical">medical</mat-option>
+        <mat-option value="poetry">poetry</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="select_wrap">
+    <label class="label_sort" for="sort">Sort by</label>
+
+    <mat-form-field class="select_field">
+      <mat-select matNativeControl class="select_sort" name="sort" id="sort">
+        <mat-option value="relevance">relevance</mat-option>
+        <mat-option value="newest">newest</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
