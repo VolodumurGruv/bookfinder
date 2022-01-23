@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksService } from 'src/app/services/books.service';
-import { GetBooksService } from 'src/app/services/get-books.service';
+
 import { Book } from 'src/app/shared/book.interface';
 
 @Component({
@@ -9,9 +8,7 @@ import { Book } from 'src/app/shared/book.interface';
   styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent implements OnInit {
-  public booksData!: Book;
-
-  constructor(private bookService: BooksService) {}
+  public books!: Book;
 
   ngOnInit(): void {}
 
