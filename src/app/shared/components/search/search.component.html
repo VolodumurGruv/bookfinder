@@ -1,0 +1,21 @@
+<header class="header">
+  <h1>Search for books</h1>
+  <div class="search">
+    <mat-form-field>
+      <mat-label>type for searching here</mat-label>
+      <input
+        matInput
+        class="search_input"
+        (keyup.enter)="search(input.value)"
+        #input
+        type="text"
+      />
+
+      <mat-icon matSuffix (click)="search(input.value)">search</mat-icon>
+    </mat-form-field>
+  </div>
+  <app-select
+    (selectSort)="sort($event)"
+    (selectCategory)="category($event)"
+  ></app-select>
+</header>

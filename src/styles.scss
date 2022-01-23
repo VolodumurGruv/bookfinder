@@ -39,12 +39,11 @@ $bookfinder-theme: mat.define-light-theme(
 @import "./assets/styles/fonts";
 @import "./assets/styles/layout";
 @import "./assets/styles/select";
+@import "./assets/styles/books";
 
 html,
 body {
-  height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #fef2d4;
 }

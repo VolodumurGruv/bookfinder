@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
-import { FinderComponent } from './finder/finder.component';
+import { BooksRoutingModule } from './books-routing.module';
+import { MaterialModule } from '../material.module';
+
 import { BooksComponent } from './books/books.component';
 import { BookComponent } from './book/book.component';
 
 @NgModule({
-  declarations: [FinderComponent, BooksComponent, BookComponent],
-  imports: [],
+  declarations: [BooksComponent, BookComponent],
+  imports: [BooksRoutingModule, MaterialModule],
+  exports: [],
 })
 export class ComponentsModule {}

@@ -10,8 +10,8 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./components/finder-routing.module').then(
-            (m) => m.FinderRoutingModule
+          import('./components/books-routing.module').then(
+            (m) => m.BooksRoutingModule
           ),
       },
     ],

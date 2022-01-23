@@ -7,14 +7,12 @@
         class="select_categories"
         name="categories"
         id="categories"
+        [value]="categoryValue"
+        (valueChange)="selectedCategory($event)"
       >
-        <mat-option value="all">all</mat-option>
-        <mat-option value="art">art</mat-option>
-        <mat-option value="biography">biography</mat-option>
-        <mat-option value="computers">computers</mat-option>
-        <mat-option value="history">history</mat-option>
-        <mat-option value="medical">medical</mat-option>
-        <mat-option value="poetry">poetry</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}</mat-option
+        >
       </mat-select>
     </mat-form-field>
   </div>
@@ -22,9 +20,17 @@
     <label class="label_sort" for="sort">Sort by</label>
 
     <mat-form-field class="select_field">
-      <mat-select matNativeControl class="select_sort" name="sort" id="sort">
-        <mat-option value="relevance">relevance</mat-option>
-        <mat-option value="newest">newest</mat-option>
+      <mat-select
+        matNativeControl
+        class="select_sort"
+        name="sort"
+        id="sort"
+        [value]="sortValue"
+        (valueChange)="selectedSort($event)"
+      >
+        <mat-option *ngFor="let sort of sorts" [value]="sort">{{
+          sort
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

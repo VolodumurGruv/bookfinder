@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from '../app-routing.module';
+
+import { LayoutComponent } from './components/layout/layout.component';
+import { SearchComponent } from './components/search/search.component';
 import { SelectComponent } from './components/select/select.component';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
-  declarations: [SelectComponent],
+  declarations: [LayoutComponent, SearchComponent, SelectComponent],
   imports: [
+    CommonModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
+    AppRoutingModule,
+    MaterialModule,
   ],
   exports: [
+    CommonModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    SelectComponent,
+    AppRoutingModule,
   ],
 })
 export class SharedModule {}

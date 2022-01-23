@@ -10,10 +10,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 10;
 
   h1 {
     width: 24rem;
-    height: 3rem;
+
     padding-top: 8px;
     margin-top: 1rem;
     margin-left: auto;
@@ -53,7 +54,9 @@
   }
 
   .mat-form-field-label {
-    font-size: 15px;
+    padding-top: 0.2rem;
+    padding-left: 0.2rem;
+    font-size: 17px;
     color: rgb(53, 50, 50);
   }
 
