@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-type Categories = string[];
 type Sort = string[];
-
+type Categories = string[];
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
@@ -22,8 +21,8 @@ export class SelectComponent implements OnInit {
     'poetry',
   ];
   public sorts: Sort = ['relevance', 'newest'];
-  public categoryValue = "all";
-  public sortValue = "relevance"
+  public categoryValue = 'all';
+  public sortValue = 'relevance';
 
   constructor() {}
 

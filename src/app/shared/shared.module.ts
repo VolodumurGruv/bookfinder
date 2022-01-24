@@ -5,18 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 
 import { LayoutComponent } from './components/layout/layout.component';
-import { SearchComponent } from './components/search/search.component';
-import { SelectComponent } from './components/select/select.component';
-import { MaterialModule } from '../material.module';
 
 @NgModule({
-  declarations: [LayoutComponent, SearchComponent, SelectComponent],
+  declarations: [LayoutComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule,
   ],
   exports: [
     CommonModule,

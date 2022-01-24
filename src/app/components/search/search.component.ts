@@ -1,47 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { BooksService } from 'src/app/services/books.service';
-import { GetBooksService } from 'src/app/services/get-books.service';
-import { Book } from 'src/app/shared/book.interface';
+import { Book } from 'src/app/interfaces/book.interface';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
-  providers: [BooksService, GetBooksService],
+  providers: [BooksService],
 })
 export class SearchComponent implements OnInit {
   private categoryValue = 'all';
   private sortValue = 'relevance';
-  public books!: Book;
+  public books!: Book[];
 
-  constructor(
-    private booksService: BooksService,
-    private bs: GetBooksService
-  ) {}
+  @Output() addBooks = new EventEmitter<Book[]>();
+
+  constructor(private booksService: BooksService) {}
 
   ngOnInit(): void {}
 
   search(event: string): void {
     if (event) {
-      console.log(
-        `sort ${this.sortValue}\n category ${this.categoryValue}\n serach ${event}`
-      );
       this.booksService
         .getBooks(event.trim(), this.sortValue, this.categoryValue)
         .pipe(
           tap((res: any) => {
             this.books = res;
-            this.bs.sendData(res);
+            this.getBooks();
           })
         )
         .subscribe();
     }
   }
 
+  getBooks() {
+    if (this.books) {
+      this.addBooks.emit(this.books);
+      console.log(this.books);
+    }
+  }
+
+  returnBooks(): Book[] {
+    return this.books;
+  }
+
   sort(s: string): void {
-    console.log(this.books);
     if (s) {
       this.sortValue = s.trim();
     }

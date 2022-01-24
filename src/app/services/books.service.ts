@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Book } from '../shared/book.interface';
+import { Book } from '../interfaces/book.interface';
 
 @Injectable()
 export class BooksService {
