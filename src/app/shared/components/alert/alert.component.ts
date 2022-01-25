@@ -5,7 +5,6 @@ import { AlertService } from 'src/app/services/alert.service';
   selector: 'app-alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
-  providers: [AlertService],
 })
 export class AlertComponent implements OnInit {
   constructor(public alertService: AlertService) {}

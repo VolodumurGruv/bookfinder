@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-@Injectable()
+
+@Injectable({ providedIn: 'root' })
 export class AlertService {
   public messages: string[] = [];
   add(message: string) {

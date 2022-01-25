@@ -20,23 +20,38 @@ export class BooksService {
     startIndex: number = 0
   ): Observable<Book> {
     if (category === 'all') {
-      return this.http.get<Book>(
-        `${this.path}q=${title}+intitle&orderBy=${sort}&startIndex=${startIndex}&maxResults=30&key=${this.key}`
-      );
+      return this.http
+        .get<Book>(
+          `${this.path}q=${title}+intitle&orderBy=${sort}&startIndex=${startIndex}&maxResults=30&key=${this.key}`
+        )
+        .pipe(catchError(this.errorHandler<Book>('Get books')));
     }
-    return this.http.get<Book>(
-      `${this.path}q=${title}+intitle+subject:${category}&orderBy=${sort}&maxResults=30&key=${this.key}`
-    ).pipe(catchError(this.errorHandler<Book>('Get books')));
+    return this.http
+      .get<Book>(
+        `${this.path}q=${title}+intitle+subject:${category}&orderBy=${sort}&maxResults=30&key=${this.key}`
+      )
+      .pipe(catchError(this.errorHandler<Book>('Get books')));
   }
 
   getBookById(id: string): Observable<Book> {
-    return this.http.get<Book>(`${this.bookPath}/${id}`).pipe(catchError(this.errorHandler<Book>("Get book by ID")));
+    return this.http
+      .get<Book>(`${this.bookPath}/${id}`)
+      .pipe(catchError(this.errorHandler<Book>('Get book by ID')));
   }
 
   private errorHandler<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      if (error.status === 0) {
+        const msg = error.message.split(' ').splice(0, 3).join(' ');
+
+        console.error(error);
+        this.log(
+          `${operation} failed: ${msg}. It will be fixed soon. Please, try later!`
+        );
+        return of(result as T);
+      }
       console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
+      this.log(`${operation} failed: ${error.error.error.message}`);
       return of(result as T);
     };
   }
