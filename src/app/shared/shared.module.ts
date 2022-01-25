@@ -5,9 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 
 import { LayoutComponent } from './components/layout/layout.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
-  declarations: [LayoutComponent],
+  declarations: [LayoutComponent, AlertComponent],
   imports: [
     CommonModule,
     HttpClientModule,

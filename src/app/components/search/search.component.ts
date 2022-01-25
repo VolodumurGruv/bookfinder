@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { BooksService } from 'src/app/services/books.service';
 import { Book } from 'src/app/interfaces/book.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -10,39 +11,33 @@ import { Book } from 'src/app/interfaces/book.interface';
   providers: [BooksService],
 })
 export class SearchComponent implements OnInit {
+  @Input() startIndex!: any;
+  @Output() addBooks = new EventEmitter<Book[]>();
+
   private categoryValue = 'all';
   private sortValue = 'relevance';
   public books!: Book[];
 
-  @Output() addBooks = new EventEmitter<Book[]>();
-
-  constructor(private booksService: BooksService) {}
+  constructor(private booksService: BooksService, private router: Router) {}
 
   ngOnInit(): void {}
 
   search(event: string): void {
-    if (event) {
-      this.booksService
-        .getBooks(event.trim(), this.sortValue, this.categoryValue)
-        .pipe(
-          tap((res: any) => {
-            this.books = res;
-            this.getBooks();
-          })
-        )
-        .subscribe();
-    }
+    this.booksService
+      .getBooks(event.trim(), this.sortValue, this.categoryValue, this.startIndex)
+      .pipe(
+        tap((res: any) => {
+          this.books = res;
+          this.getBooks();
+        })
+      )
+      .subscribe();
   }
 
   getBooks() {
     if (this.books) {
       this.addBooks.emit(this.books);
-      console.log(this.books);
     }
-  }
-
-  returnBooks(): Book[] {
-    return this.books;
   }
 
   sort(s: string): void {

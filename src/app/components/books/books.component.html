@@ -1,27 +1,26 @@
-<app-search (addBooks)="addBooks($event)"></app-search>
+<app-search
+  (addBooks)="addBooks($event)"
+  [startIndex]="startIndex"
+></app-search>
 <div class="books">
-  <div class="card" *ngFor="let book of books">
-    <a [routerLink]="['/book', book.id]">
-      <img [src]="book.volumeInfo.imageLinks?.smallThumbnail" alt="" />
-      <div class="card_header">
-        <div class="card_title">{{ book.volumeInfo.title }}</div>
-      </div>
-      <div class="card_content">
-        <p>
-          Category:
-          <span
-            *ngFor="let category of book.volumeInfo.categories; index as i"
-            >{{ category }}</span
-          >
-        </p>
-        <p>
-          Author:
-          <span *ngFor="let author of book.volumeInfo.authors">{{
-            author
-          }}</span>
-        </p>
-      </div>
-    </a>
+  <p>{{ totalItems }}</p>
+  <div class="card" (click)="bookDetalies(book.id)" *ngFor="let book of books">
+    <img [src]="book.volumeInfo.imageLinks?.smallThumbnail" alt="" />
+    <div class="card_header">
+      <div class="card_title">{{ book.volumeInfo.title }}</div>
+    </div>
+    <div class="card_content">
+      <p>
+        Category:
+        <span *ngFor="let category of book.volumeInfo.categories; index as i">{{
+          category
+        }}</span>
+      </p>
+      <p>
+        Author:
+        <span *ngFor="let author of book.volumeInfo.authors">{{ author }}</span>
+      </p>
+    </div>
   </div>
 </div>
 <button class="card_btn" (click)="showMore()">Show more</button>

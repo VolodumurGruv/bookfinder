@@ -1,5 +1,6 @@
 export interface Book {
   id: string;
+  totalItems: number;
   volumeInfo: {
     title: string;
     authors?: string[];
@@ -8,5 +9,9 @@ export interface Book {
       smallThumbnail: string;
       thumbnail: string;
     };
+    subtitle?: string;
+    publishedDate?: Date;
+    previewLink?: string;
+    language?: string;
   };
 }

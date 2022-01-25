@@ -1,22 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
+import { Book } from 'src/app/interfaces/book.interface';
+import { BooksService } from 'src/app/services/books.service';
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss'],
+  providers: [BooksService],
 })
 export class BookComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  public book$!: Observable<Book>;
 
-  ngOnInit(): void {}
+  constructor(
+    private bookService: BooksService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.book();
+  }
 
   book() {
-    // this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) => {
-    //     this.service.getBooks(params.get(id));
-    //   })
-    // );
+    this.book$ = this.route.paramMap.pipe(
+      switchMap((params: Params) => {
+        return this.bookService.getBookById(params['params']['id']);
+      })
+    );
+  }
+
+  back() {
+    this.router.navigate(['/']);
   }
 }
