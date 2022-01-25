@@ -7,6 +7,7 @@ import { BookComponent } from './book/book.component';
 import { SearchComponent } from './search/search.component';
 import { SelectComponent } from './select/select.component';
 import { CommonModule } from '@angular/common';
+import { ProgressSpinerComponent } from './progress-spiner/progress-spiner.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
     BookComponent,
     SearchComponent,
     SelectComponent,
+    ProgressSpinerComponent,
   ],
   imports: [CommonModule, BooksRoutingModule, MaterialModule],
   exports: [BooksRoutingModule],

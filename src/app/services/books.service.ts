@@ -46,7 +46,7 @@ export class BooksService {
 
         console.error(error);
         this.log(
-          `${operation} failed: ${msg}. It will be fixed soon. Please, try later!`
+          `${operation} failed: ${msg}. It will be fixed soon. Please, try again or later!`
         );
         return of(result as T);
       }

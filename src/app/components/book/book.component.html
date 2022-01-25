@@ -1,35 +1,41 @@
 <app-search> </app-search>
-
-<div class="books">
+<section class="wrap">
   <button (click)="back()">Back</button>
-  <div class="card" *ngIf="book$ | async as book">
-    <img [src]="book.volumeInfo.imageLinks?.smallThumbnail" alt="" />
-    <div class="card_header">
-      <div class="card_title">{{ book.volumeInfo.title }}</div>
-      <div class="card_subtitle">
-        <p>{{ book.volumeInfo.subtitle }}</p>
+  <div class="books">
+    <div class="card" *ngIf="book$ | async as book; else loading">
+      <img [src]="book.volumeInfo.imageLinks?.smallThumbnail" alt="" />
+      <div class="card_header">
+        <div class="card_title">{{ book.volumeInfo.title }}</div>
+        <div class="card_subtitle">
+          <p>{{ book.volumeInfo.subtitle }}</p>
+        </div>
+      </div>
+      <div class="card_content">
+        <p>
+          Category:
+          <span *ngFor="let category of book.volumeInfo.categories">{{
+            category
+          }}</span>
+        </p>
+        <p>
+          Author:
+          <span *ngFor="let author of book.volumeInfo.authors">{{
+            author
+          }}</span>
+        </p>
+        <p>
+          Publlished: {{ book.volumeInfo.publishedDate | date: "dd, MMM, y" }}
+        </p>
+        <p>
+          <a [href]="book.volumeInfo.previewLink" target="blank"
+            >Visist preview page</a
+          >
+        </p>
+        <p>Language: {{ book.volumeInfo.language }}</p>
       </div>
     </div>
-    <div class="card_content">
-      <p>
-        Category:
-        <span *ngFor="let category of book.volumeInfo.categories">{{
-          category
-        }}</span>
-      </p>
-      <p>
-        Author:
-        <span *ngFor="let author of book.volumeInfo.authors">{{ author }}</span>
-      </p>
-      <p>
-        Publlished: {{ book.volumeInfo.publishedDate | date: "dd, MMM, y" }}
-      </p>
-      <p>
-        <a [href]="book.volumeInfo.previewLink" target="blank"
-          >Visist preview page</a
-        >
-      </p>
-      <p>Language: {{ book.volumeInfo.language }}</p>
-    </div>
   </div>
-</div>
+  <ng-template #loading>
+    <app-pogress-spiner></app-pogress-spiner>
+  </ng-template>
+</section>

@@ -15,3 +15,10 @@ export interface Book {
     language?: string;
   };
 }
+
+export interface SearchParam {
+  title: string;
+  sort: string;
+  category: string;
+  startIndex: number;
+};

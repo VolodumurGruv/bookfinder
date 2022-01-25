@@ -1,26 +1,47 @@
 <app-search
   (addBooks)="addBooks($event)"
-  [startIndex]="startIndex"
+  (getParams)="getParams($event)"
 ></app-search>
-<div class="books">
+<section class="wrap">
   <p>{{ totalItems }}</p>
-  <div class="card" (click)="bookDetalies(book.id)" *ngFor="let book of books">
-    <img [src]="book.volumeInfo.imageLinks?.smallThumbnail" alt="" />
-    <div class="card_header">
-      <div class="card_title">{{ book.volumeInfo.title }}</div>
-    </div>
-    <div class="card_content">
-      <p>
-        Category:
-        <span *ngFor="let category of book.volumeInfo.categories; index as i">{{
-          category
-        }}</span>
-      </p>
-      <p>
-        Author:
-        <span *ngFor="let author of book.volumeInfo.authors">{{ author }}</span>
-      </p>
+  <div class="books">
+    <div
+      class="card"
+      (click)="bookDetalies(book.id)"
+      *ngFor="let book of books"
+    >
+      <img
+        [src]="book.volumeInfo.imageLinks?.smallThumbnail"
+        alt="book image"
+      />
+      <div class="card_header">
+        <div class="card_title">{{ book.volumeInfo.title }}</div>
+      </div>
+      <div class="card_content">
+        <p>
+          Category:
+          <span *ngFor="let category of book.volumeInfo.categories">{{
+            category
+          }}</span>
+        </p>
+        <p>
+          Author:
+          <span *ngFor="let author of book.volumeInfo.authors">{{
+            author
+          }}</span>
+        </p>
+      </div>
     </div>
   </div>
-</div>
-<button class="card_btn" (click)="showMore()">Show more</button>
+  <ng-template #loading>
+    <app-progress-spiner></app-progress-spiner>
+  </ng-template>
+
+  <button
+    class="card_btn"
+    [ngClass]="!disabled ? 'hidden' : ''"
+    (click)="showMore()"
+  >
+    Show more
+  </button>
+</section>
