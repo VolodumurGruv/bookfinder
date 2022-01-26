@@ -14,11 +14,16 @@ import { BooksService } from 'src/app/services/books.service';
 })
 export class BooksComponent implements OnInit, OnDestroy {
   public books!: Book[];
-  public totalItems!: number;
   public spiner!: boolean;
-  public disabled = false;
+  public disabled = true;
+  public totalItems = 0;
 
-  private searchParams!: SearchParam;
+  private searchParams: SearchParam = {
+    title: '',
+    sort: '',
+    category: '',
+    startIndex: 0,
+  };
   private subMore!: Subscription;
 
   constructor(private router: Router, private booksService: BooksService) {}
@@ -26,11 +31,12 @@ export class BooksComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   addBooks(event: any) {
-    console.log(event);
+    this.spiner = true;
     this.totalItems = event.totalItems;
     this.books = event.items;
-    if (this.books.length) {
-      this.disabled = true;
+    if (this.totalItems) {
+      this.disabled = false;
+      this.spiner = false;
     }
   }
 
@@ -39,19 +45,33 @@ export class BooksComponent implements OnInit, OnDestroy {
   }
 
   getParams(event: SearchParam) {
+    this.searchParams.startIndex = 0;
     this.searchParams = event;
   }
+
   // getting next 30 books
   showMore() {
     this.searchParams.startIndex += 30;
-    this.booksService
+
+    this.subMore = this.booksService
       .getBooks(
         this.searchParams.title,
         this.searchParams.sort,
         this.searchParams.category,
         this.searchParams.startIndex
       )
-      .pipe(tap((res: any) => this.books.push(...res['items'])))
+      .pipe(
+        tap((res: any) => {
+          // cheking for displaying button
+          if (!res['items']) {
+            this.disabled = true;
+            this.searchParams.startIndex = 0;
+          }
+          if (res['items']) {
+            this.books.push(...res['items']);
+          }
+        })
+      )
       .subscribe();
   }
   //setup to default values and unsubscribe
@@ -62,6 +82,9 @@ export class BooksComponent implements OnInit, OnDestroy {
       this.searchParams.title = '';
       this.searchParams.sort = 'relevance';
       this.searchParams.category = 'all';
+      this.disabled = false;
+
+      console.log('default');
     }
   }
 }

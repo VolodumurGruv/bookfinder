@@ -21,4 +21,4 @@ export interface SearchParam {
   sort: string;
   category: string;
   startIndex: number;
-};
+}

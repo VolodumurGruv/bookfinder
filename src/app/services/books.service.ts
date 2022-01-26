@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ErrorHandler, Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Book } from '../interfaces/book.interface';
+import { Book, SearchParam } from '../interfaces/book.interface';
 import { AlertService } from './alert.service';
 
 @Injectable()
@@ -17,18 +17,19 @@ export class BooksService {
     title: string,
     sort: string,
     category: string,
-    startIndex: number = 0
+    startIndex: number = 0,
+    maxResults: number = 30
   ): Observable<Book> {
     if (category === 'all') {
       return this.http
         .get<Book>(
-          `${this.path}q=${title}+intitle&orderBy=${sort}&startIndex=${startIndex}&maxResults=30&key=${this.key}`
+          `${this.path}q=${title}+intitle&orderBy=${sort}&startIndex=${startIndex}&maxResults=${maxResults}&key=${this.key}`
         )
         .pipe(catchError(this.errorHandler<Book>('Get books')));
     }
     return this.http
       .get<Book>(
-        `${this.path}q=${title}+intitle+subject:${category}&orderBy=${sort}&maxResults=30&key=${this.key}`
+        `${this.path}q=${title}+intitle+subject:${category}&orderBy=${sort}&startIndex=${startIndex}&maxResults=${maxResults}&key=${this.key}`
       )
       .pipe(catchError(this.errorHandler<Book>('Get books')));
   }

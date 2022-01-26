@@ -3,7 +3,7 @@
   (getParams)="getParams($event)"
 ></app-search>
 <section class="wrap">
-  <p>{{ totalItems }}</p>
+  <p class="items">Total items: {{ totalItems }}</p>
   <div class="books">
     <div
       class="card"
@@ -15,16 +15,18 @@
         alt="book image"
       />
       <div class="card_header">
-        <div class="card_title">{{ book.volumeInfo.title }}</div>
+        <div class="card_title text-center">{{ book.volumeInfo.title }}</div>
       </div>
       <div class="card_content">
-        <p>
+        <p class="text-center">
           Category:
           <span *ngFor="let category of book.volumeInfo.categories">{{
             category
           }}</span>
         </p>
-        <p>
+      </div>
+      <div class="card_content">
+        <p class="text-center">
           Author:
           <span *ngFor="let author of book.volumeInfo.authors">{{
             author
@@ -33,15 +35,15 @@
       </div>
     </div>
   </div>
-  <ng-template #loading>
-    <app-progress-spiner></app-progress-spiner>
-  </ng-template>
 
   <button
+    [ngClass]="disabled ? 'hidden' : ''"
     class="card_btn"
-    [ngClass]="!disabled ? 'hidden' : ''"
     (click)="showMore()"
   >
     Show more
   </button>
 </section>
+<ng-template *ngIf="spiner">
+  <app-progress-spiner></app-progress-spiner>
+</ng-template>
