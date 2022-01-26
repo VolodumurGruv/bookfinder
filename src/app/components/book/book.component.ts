@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Book } from 'src/app/interfaces/book.interface';
 import { BooksService } from 'src/app/services/books.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-book',
@@ -12,6 +13,7 @@ import { BooksService } from 'src/app/services/books.service';
 })
 export class BookComponent implements OnInit {
   public book$!: Observable<Book>;
+  public lang!: any;
 
   constructor(
     private bookService: BooksService,

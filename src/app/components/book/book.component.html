@@ -2,35 +2,43 @@
 <section class="wrap">
   <div class="books">
     <div class="card-book" *ngIf="book$ | async as book; else loading">
-      <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="" />
-      <div class="card_header-book">
-        <div class="card_title-book">{{ book.volumeInfo.title }}</div>
-        <div class="card_subtitle-book">
-          <p>{{ book.volumeInfo.subtitle }}</p>
-        </div>
+      <div class="card-book_image-block">
+        <img
+          class="card-book_image"
+          [src]="book.volumeInfo.imageLinks?.thumbnail"
+          alt=""
+        />
       </div>
-      <div class="card_content-book">
-        <p>
-          Category:
-          <span *ngFor="let category of book.volumeInfo.categories">{{
-            category
-          }}</span>
-        </p>
-        <p>
-          Author:
-          <span *ngFor="let author of book.volumeInfo.authors">{{
-            author
-          }}</span>
-        </p>
-        <p>
-          Publlished: {{ book.volumeInfo.publishedDate | date: "dd, MMM, y" }}
-        </p>
-        <p>
-          <a [href]="book.volumeInfo.previewLink" target="blank"
-            >Visist preview page</a
-          >
-        </p>
-        <p>Language: {{ book.volumeInfo.language }}</p>
+      <div>
+        <div class="card-book_header">
+          <div class="card-book_title">{{ book.volumeInfo.title }}</div>
+          <div class="card-book_subtitle">
+            <p>{{ book.volumeInfo.subtitle }}</p>
+          </div>
+        </div>
+        <div class="card-book_content">
+          <p>
+            Category:
+            <span *ngFor="let category of book.volumeInfo.categories">{{
+              category
+            }}</span>
+          </p>
+          <p>
+            Author:
+            <span *ngFor="let author of book.volumeInfo.authors">{{
+              author
+            }}</span>
+          </p>
+          <p>
+            Publlished: {{ book.volumeInfo.publishedDate | date: "dd, MMM, y" }}
+          </p>
+          <p>
+            <a [href]="book.volumeInfo.previewLink" target="blank"
+              >Visist preview page</a
+            >
+          </p>
+          <p >Language: {{ book.volumeInfo.language }}</p>
+        </div>
       </div>
     </div>
   </div>

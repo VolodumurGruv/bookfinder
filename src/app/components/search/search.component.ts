@@ -37,6 +37,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   search(event: string): void {
     this.searchParams.title = event.trim();
+
     this.booksService
       .getBooks(
         this.searchParams.title,
@@ -48,13 +49,14 @@ export class SearchComponent implements OnInit, OnDestroy {
         tap((res: any) => {
           this.books = res;
           this.getBooks();
-          this.goBack();
         })
       )
       .subscribe();
+    // redicrect
+    this.goBack();
   }
   // passing data to books component
-  getBooks() {
+  getBooks(): void {
     this.addBooks.emit(this.books);
     this.getParams.emit(this.searchParams);
   }
@@ -71,7 +73,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
   }
   // redirect to '/' (home)
-  goBack() {
+  goBack(): void {
+    localStorage.setItem('title', this.searchParams.title);
+    localStorage.setItem('sort', this.searchParams.sort);
+    localStorage.setItem('category', this.searchParams.category);
+    localStorage.setItem('startIndex', this.searchParams.startIndex.toString());
+
     this.redirect.emit('/');
   }
 

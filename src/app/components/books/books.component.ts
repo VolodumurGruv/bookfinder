@@ -14,21 +14,47 @@ import { BooksService } from 'src/app/services/books.service';
 })
 export class BooksComponent implements OnInit, OnDestroy {
   public books!: Book[];
-  public spiner!: boolean;
+  public spiner = false;
   public disabled = true;
   public totalItems = 0;
 
   private searchParams: SearchParam = {
     title: '',
-    sort: '',
-    category: '',
+    sort: 'relevance',
+    category: 'all',
     startIndex: 0,
   };
   private subMore!: Subscription;
 
   constructor(private router: Router, private booksService: BooksService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (Object.values(localStorage).length) {
+      this.subMore = this.booksService
+        .getBooks(
+          localStorage.getItem('title') || '',
+          localStorage.getItem('sort') || 'relevance',
+          localStorage.getItem('category') || 'all',
+          0
+        )
+        .pipe(
+          tap((res: any) => {
+            // cheking for displaying button
+            if (!res['items']) {
+              this.disabled = true;
+              this.searchParams.startIndex = 0;
+            }
+
+            if (res['items']) {
+              this.totalItems = res.totalItems;
+              this.disabled = false;
+              this.books = res['items'];
+            }
+          })
+        )
+        .subscribe();
+    }
+  }
 
   addBooks(event: any) {
     this.spiner = true;
@@ -41,6 +67,7 @@ export class BooksComponent implements OnInit, OnDestroy {
   }
 
   bookDetalies(idx: string) {
+    localStorage.clear();
     this.router.navigate(['/book', idx]);
   }
 
@@ -50,7 +77,7 @@ export class BooksComponent implements OnInit, OnDestroy {
   }
 
   // getting next 30 books
-  showMore() {
+  showMore(): void {
     this.searchParams.startIndex += 30;
 
     this.subMore = this.booksService
@@ -68,6 +95,7 @@ export class BooksComponent implements OnInit, OnDestroy {
             this.searchParams.startIndex = 0;
           }
           if (res['items']) {
+            console.log(res['items']);
             this.books.push(...res['items']);
           }
         })
@@ -83,6 +111,8 @@ export class BooksComponent implements OnInit, OnDestroy {
       this.searchParams.sort = 'relevance';
       this.searchParams.category = 'all';
       this.disabled = false;
+
+      localStorage.clear();
 
       console.log('default');
     }
