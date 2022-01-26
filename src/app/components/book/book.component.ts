@@ -23,7 +23,7 @@ export class BookComponent implements OnInit {
     this.book();
   }
 
-  book() {
+  book(): void {
     this.book$ = this.route.paramMap.pipe(
       switchMap((params: Params) => {
         return this.bookService.getBookById(params['params']['id']);
@@ -31,7 +31,7 @@ export class BookComponent implements OnInit {
     );
   }
 
-  back() {
-    this.router.navigate(['/']);
+  redirect(event: string): void {
+    this.router.navigate([event]);
   }
 }

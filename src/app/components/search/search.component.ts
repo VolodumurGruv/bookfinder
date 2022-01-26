@@ -8,7 +8,6 @@ import {
 import { tap } from 'rxjs/operators';
 import { BooksService } from 'src/app/services/books.service';
 import { Book, SearchParam } from 'src/app/interfaces/book.interface';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -18,6 +17,7 @@ import { Subscription } from 'rxjs';
   providers: [BooksService],
 })
 export class SearchComponent implements OnInit, OnDestroy {
+  @Output() redirect = new EventEmitter<string>();
   @Output() addBooks = new EventEmitter<Book[]>();
   @Output() getParams = new EventEmitter<SearchParam>();
 
@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public books!: Book[];
 
-  constructor(private booksService: BooksService, private router: Router) {}
+  constructor(private booksService: BooksService) {}
 
   ngOnInit(): void {}
 
@@ -46,9 +46,9 @@ export class SearchComponent implements OnInit, OnDestroy {
       )
       .pipe(
         tap((res: any) => {
-          console.log(res);
           this.books = res;
           this.getBooks();
+          this.goBack();
         })
       )
       .subscribe();
@@ -69,6 +69,10 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (c) {
       this.searchParams.category = c.trim();
     }
+  }
+  // redirect to '/' (home)
+  goBack() {
+    this.redirect.emit('/');
   }
 
   ngOnDestroy(): void {

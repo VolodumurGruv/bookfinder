@@ -1,16 +1,15 @@
-<app-search> </app-search>
+<app-search (redirect)="redirect($event)"> </app-search>
 <section class="wrap">
-  <button (click)="back()">Back</button>
   <div class="books">
-    <div class="card" *ngIf="book$ | async as book; else loading">
-      <img [src]="book.volumeInfo.imageLinks?.smallThumbnail" alt="" />
-      <div class="card_header">
-        <div class="card_title">{{ book.volumeInfo.title }}</div>
-        <div class="card_subtitle">
+    <div class="card-book" *ngIf="book$ | async as book; else loading">
+      <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="" />
+      <div class="card_header-book">
+        <div class="card_title-book">{{ book.volumeInfo.title }}</div>
+        <div class="card_subtitle-book">
           <p>{{ book.volumeInfo.subtitle }}</p>
         </div>
       </div>
-      <div class="card_content">
+      <div class="card_content-book">
         <p>
           Category:
           <span *ngFor="let category of book.volumeInfo.categories">{{
