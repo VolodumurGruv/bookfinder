@@ -60,6 +60,10 @@
     color: rgb(53, 50, 50);
   }
 
+  .mat-form-field.mat-focused .mat-form-field-label {
+    color: white;
+  }
+
   .mat-icon {
     cursor: pointer;
     margin-bottom: 5px;

@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 import { BooksService } from 'src/app/services/books.service';
 import { Book, SearchParam } from 'src/app/interfaces/book.interface';
 import { Subscription } from 'rxjs';
+import { searchParams } from 'src/app/config/config';
 
 @Component({
   selector: 'app-search',
@@ -21,15 +22,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   @Output() addBooks = new EventEmitter<Book[]>();
   @Output() getParams = new EventEmitter<SearchParam>();
 
-  private searchParams: SearchParam = {
-    title: '',
-    sort: 'relevance',
-    category: 'all',
-    startIndex: 0,
-  };
+  private searchParams: SearchParam = searchParams;
   private subBooks!: Subscription;
 
-  public books!: Book[];
+  private books!: Book[];
 
   constructor(private booksService: BooksService) {}
 
@@ -60,6 +56,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.addBooks.emit(this.books);
     this.getParams.emit(this.searchParams);
   }
+
   //getting value from selects
   sort(s: string): void {
     if (s) {
@@ -74,10 +71,15 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   // redirect to '/' (home)
   goBack(): void {
-    localStorage.setItem('title', this.searchParams.title);
-    localStorage.setItem('sort', this.searchParams.sort);
-    localStorage.setItem('category', this.searchParams.category);
-    localStorage.setItem('startIndex', this.searchParams.startIndex.toString());
+    if (this.searchParams.title) {
+      localStorage.setItem('title', this.searchParams.title);
+      localStorage.setItem('sort', this.searchParams.sort);
+      localStorage.setItem('category', this.searchParams.category);
+      localStorage.setItem(
+        'startIndex',
+        this.searchParams.startIndex.toString()
+      );
+    }
 
     this.redirect.emit('/');
   }

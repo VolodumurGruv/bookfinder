@@ -3,7 +3,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Book } from 'src/app/interfaces/book.interface';
 import { BooksService } from 'src/app/services/books.service';
-import { tap } from 'rxjs/operators';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-book',
@@ -13,7 +14,6 @@ import { tap } from 'rxjs/operators';
 })
 export class BookComponent implements OnInit {
   public book$!: Observable<Book>;
-  public lang!: any;
 
   constructor(
     private bookService: BooksService,

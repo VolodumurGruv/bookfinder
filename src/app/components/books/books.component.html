@@ -11,7 +11,7 @@
       *ngFor="let book of books"
     >
       <img
-      class="card_image"
+        class="card_image"
         [src]="book.volumeInfo.imageLinks?.smallThumbnail"
         alt="book image"
       />
@@ -47,6 +47,6 @@
     Show more
   </button>
 </section>
-<ng-template *ngIf="spiner">
-  <app-progress-spiner></app-progress-spiner>
+<ng-template [ngIf]="spinner$ | async">
+  <app-progress-spiner class="spinner"></app-progress-spiner>
 </ng-template>

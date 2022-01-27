@@ -1,0 +1,19 @@
+@include media-md {
+  .card-book {
+    flex-direction: column;
+  }
+}
+@include media-ms {
+  .search {
+    .mat-form-field {
+      width: 15rem;
+    }
+  }
+}
+
+@include media-sm {
+  .select,
+  .select_wrap {
+    flex-direction: column;
+  }
+}

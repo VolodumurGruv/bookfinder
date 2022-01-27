@@ -9,7 +9,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
   styleUrls: ['./progress-spiner.component.scss'],
 })
 export class ProgressSpinerComponent implements OnInit {
-  color: ThemePalette = 'warn';
+  color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
 
