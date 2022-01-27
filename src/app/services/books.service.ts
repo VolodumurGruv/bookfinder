@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { ErrorHandler, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Book, SearchParam } from '../interfaces/book.interface';
+import { Book } from '../interfaces/book.interface';
 import { AlertService } from './alert.service';
 
 @Injectable()

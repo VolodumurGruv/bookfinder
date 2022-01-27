@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
@@ -6,8 +6,7 @@ import { AlertService } from 'src/app/services/alert.service';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent {
   constructor(public alertService: AlertService) {}
 
-  ngOnInit(): void {}
 }

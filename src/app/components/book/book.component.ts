@@ -3,8 +3,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Book } from 'src/app/interfaces/book.interface';
 import { BooksService } from 'src/app/services/books.service';
-import { ThemePalette } from '@angular/material/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-book',

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 type Sort = string[];
 type Categories = string[];
@@ -7,7 +7,7 @@ type Categories = string[];
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent {
   @Output() selectSort = new EventEmitter<string>();
   @Output() selectCategory = new EventEmitter<string>();
 
@@ -24,17 +24,13 @@ export class SelectComponent implements OnInit {
   public categoryValue = 'all';
   public sortValue = 'relevance';
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  selectedSort(event: string) {
+  selectedSort(event: string): void {
     if (event) {
       this.selectSort.emit(event);
     }
   }
 
-  selectedCategory(event: string) {
+  selectedCategory(event: string): void {
     if (event) {
       this.selectCategory.emit(event);
     }

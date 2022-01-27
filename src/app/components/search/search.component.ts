@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { BooksService } from 'src/app/services/books.service';
 import { Book, SearchParam } from 'src/app/interfaces/book.interface';
@@ -17,7 +11,7 @@ import { searchParams } from 'src/app/config/config';
   styleUrls: ['./search.component.scss'],
   providers: [BooksService],
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchComponent implements OnDestroy {
   @Output() redirect = new EventEmitter<string>();
   @Output() addBooks = new EventEmitter<Book[]>();
   @Output() getParams = new EventEmitter<SearchParam>();
@@ -29,8 +23,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   private books!: Book[];
 
   constructor(private booksService: BooksService) {}
-
-  ngOnInit(): void {}
 
   search(event: string): void {
     this.searchParams.title = event.trim();

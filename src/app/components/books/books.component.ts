@@ -67,7 +67,7 @@ export class BooksComponent implements OnInit, OnDestroy {
     localStorage.clear();
   }
 
-  addBooks(event: any) {
+  addBooks(event: any): void {
     this.totalItems = event.totalItems;
     this.books = event.items;
 
@@ -76,12 +76,12 @@ export class BooksComponent implements OnInit, OnDestroy {
     }
   }
 
-  bookDetalies(idx: string) {
+  bookDetalies(idx: string): void {
     localStorage.clear();
     this.router.navigate(['/book', idx]);
   }
 
-  getParams(event: SearchParam) {
+  getParams(event: SearchParam): void {
     this.searchParams.startIndex = 0;
     this.searchParams = event;
   }

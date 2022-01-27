@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
@@ -8,12 +8,8 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
   templateUrl: './progress-spiner.component.html',
   styleUrls: ['./progress-spiner.component.scss'],
 })
-export class ProgressSpinerComponent implements OnInit {
-  color: ThemePalette = 'primary';
-  mode: ProgressSpinnerMode = 'indeterminate';
-  value = 50;
-
-  constructor() {}
-
-  ngOnInit(): void {}
+export class ProgressSpinerComponent {
+  public color: ThemePalette = 'primary';
+  public mode: ProgressSpinnerMode = 'indeterminate';
+  public value = 50;
 }
