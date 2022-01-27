@@ -55,13 +55,17 @@
   }
 
   &_btn {
-    margin-top: 20px;
+    margin-left: 45%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     right: 0;
     width: 120px;
     height: 40px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    font-family: $font-noto;
+    font-size: 1rem;
     box-shadow: rgba(124, 124, 124, 0.2) 0px -23px 25px 0px inset,
       rgba(124, 124, 124, 0.2) 0px -36px 30px 0px inset,
       rgba(124, 124, 124, 0.2) 0px -79px 40px 0px inset,
