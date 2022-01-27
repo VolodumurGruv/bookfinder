@@ -43,7 +43,8 @@ $bookfinder-theme: mat.define-light-theme(
 @import "./assets/styles/alert";
 @import "./assets/styles/book";
 @import "./assets/styles/mixings";
-@import './assets/styles/responsive';
+@import "./assets/styles/responsive";
+@import "./assets/styles/expantion";
 
 html,
 body {

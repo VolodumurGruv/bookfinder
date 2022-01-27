@@ -18,4 +18,38 @@
     (selectSort)="sort($event)"
     (selectCategory)="category($event)"
   ></app-select>
+  <div class="expantion">
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Search: </mat-panel-title>
+          <mat-panel-description>
+            <div class="search">
+              <mat-form-field>
+                <mat-label>type for searching here</mat-label>
+                <input
+                  matInput
+                  class="search_input"
+                  (keyup.enter)="search(input.value)"
+                  #input
+                  type="text"
+                />
+
+                <mat-icon matSuffix (click)="search(input.value)"
+                  >search</mat-icon
+                >
+              </mat-form-field>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-select
+          (selectSort)="sort($event)"
+          (selectCategory)="category($event)"
+        ></app-select>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </header>

@@ -13,7 +13,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  // margin-top: 17rem;
   z-index: 0;
 }
 
@@ -63,12 +62,13 @@
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    box-shadow: rgba(219, 188, 9, 0.2) 0px -23px 25px 0px inset,
-      rgba(219, 188, 9, 0.17) 0px -36px 30px 0px inset,
-      rgba(219, 188, 9, 0.1) 0px -79px 40px 0px inset,
-      rgba(219, 188, 9, 0.06) 0px 2px 1px, rgba(219, 188, 9, 0.09) 0px 4px 2px,
-      rgba(219, 188, 9, 0.09) 0px 8px 4px, rgba(219, 188, 9, 0.09) 0px 16px 8px,
-      rgba(219, 188, 9, 0.09) 0px 32px 16px;
+    box-shadow: rgba(124, 124, 124, 0.2) 0px -23px 25px 0px inset,
+      rgba(124, 124, 124, 0.2) 0px -36px 30px 0px inset,
+      rgba(124, 124, 124, 0.2) 0px -79px 40px 0px inset,
+      rgba(124, 124, 124, 0.2) 0px 2px 1px, rgba(124, 124, 124, 0.2) 0px 4px 2px,
+      rgba(124, 124, 124, 0.2) 0px 8px 4px,
+      rgba(124, 124, 124, 0.2) 0px 16px 8px,
+      rgba(124, 124, 124, 0.2) 0px 32px 16px;
   }
 }
 

@@ -22,9 +22,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   @Output() addBooks = new EventEmitter<Book[]>();
   @Output() getParams = new EventEmitter<SearchParam>();
 
+  public panelOpenState = false;
+
   private searchParams: SearchParam = searchParams;
   private subBooks!: Subscription;
-
   private books!: Book[];
 
   constructor(private booksService: BooksService) {}
