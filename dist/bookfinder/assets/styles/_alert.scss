@@ -1,0 +1,21 @@
+.alert {
+  display: block;
+  position: sticky;
+  top: 0;
+  left: 0;
+  text-align: center;
+  padding: 0.1rem;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: red;
+  color: white;
+  z-index: 1000;
+}
+
+.spinner {
+  display: block;
+  position: sticky;
+  bottom: 30%;
+  margin-left: 45%;
+  z-index: 1000;
+}

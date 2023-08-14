@@ -1,0 +1,15 @@
+.expantion {
+  display: none;
+
+  .mat-expansion-panel {
+    background: transparent !important;
+  }
+  .mat-expansion-indicator::after {
+    color: white;
+  }
+
+  .mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"])
+    .mat-expansion-panel-header:hover {
+    background: transparent;
+  }
+}

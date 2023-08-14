@@ -1,0 +1,52 @@
+@include media-md {
+  .card-book {
+    flex-direction: column;
+  }
+
+  .expantion {
+    display: block !important;
+    .search,
+    .select {
+      display: flex;
+      .mat-form-field {
+        width: 15rem;
+      }
+    }
+
+    .search,
+    .select_wrap {
+      flex-direction: column;
+    }
+  }
+
+  .search,
+  .select {
+    display: none;
+  }
+
+  .wrap {
+    margin-top: 9rem;
+  }
+}
+
+// @include media-ms {
+//   .expantion {
+//     .search,
+//     .select_wrap {
+//       flex-direction: column;
+//     }
+//   }
+// }
+
+// @include media-sm {
+//   .select,
+//   .select_wrap {
+//     flex-direction: column;
+//   }
+
+//   .search {
+//     .mat-form-field {
+//       width: 10rem;
+//     }
+//   }
+// }

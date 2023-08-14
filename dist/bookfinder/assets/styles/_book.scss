@@ -1,0 +1,33 @@
+.card-book {
+  display: flex;
+  align-items: center;
+  margin: 1rem 3rem;
+  line-height: 2rem;
+  background: rgb(243, 243, 243);
+  box-shadow: 5px 5px 5px rgb(136, 134, 134), 10px 10px 10px rgb(136, 134, 134),
+    15px 15px 10px rgb(136, 134, 134);
+
+  &_image {
+    width: 200px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  &_content {
+    @extend .card_content;
+  }
+
+  &_header {
+    @extend .card_header;
+  }
+
+  &_title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  &_subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+}
